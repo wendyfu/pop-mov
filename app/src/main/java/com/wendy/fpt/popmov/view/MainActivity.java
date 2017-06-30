@@ -1,7 +1,9 @@
-package com.wendy.fpt.popmov;
+package com.wendy.fpt.popmov.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.wendy.fpt.popmov.R;
 
 public class MainActivity extends AppCompatActivity {
 
