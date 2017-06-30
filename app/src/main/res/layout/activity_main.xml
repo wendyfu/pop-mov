@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.wendy.fpt.popmov.view.MainActivity">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <include layout="@layout/app_toolbar" />
+
+    <fragment
         android:id="@+id/fragment"
         android:name="com.wendy.fpt.popmov.view.MainFragment"
         android:layout_width="match_parent"

@@ -27,7 +27,7 @@ public class MoviePosterViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(String imgUrl) {
 //        Glide.with(context).load(imgUrl).into(imgMovPoster);
-        Glide.with(context).load(R.drawable.poster_sample_1).into(imgMovPoster);
+        Glide.with(context).load(R.drawable.sample_poster_1).into(imgMovPoster);
     }
 
     public void setListener(final MoviePosterAdapter.MoviePosterClickListener listener) {
