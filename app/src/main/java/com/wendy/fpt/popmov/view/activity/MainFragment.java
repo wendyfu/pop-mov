@@ -1,4 +1,4 @@
-package com.wendy.fpt.popmov.view;
+package com.wendy.fpt.popmov.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,16 +9,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wendy.fpt.popmov.PopMovApplication;
 import com.wendy.fpt.popmov.R;
+import com.wendy.fpt.popmov.data.model.TMDBMovieDetailsResponse;
+import com.wendy.fpt.popmov.presenter.MainPresenter;
+import com.wendy.fpt.popmov.view.MainView;
 import com.wendy.fpt.popmov.view.adapter.MoviePosterAdapter;
+
+import org.parceler.Parcels;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainFragment extends Fragment implements MoviePosterAdapter.MoviePosterClickListener {
+public class MainFragment extends Fragment implements MainView, MoviePosterAdapter.MoviePosterClickListener {
 
     @BindView(R.id.rv_mov_poster)
     RecyclerView rvMovPoster;
+
+    @Inject
+    MainPresenter presenter;
 
     private MoviePosterAdapter moviePosterAdapter;
 
@@ -27,8 +38,11 @@ public class MainFragment extends Fragment implements MoviePosterAdapter.MoviePo
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, view);
+        ((PopMovApplication) getActivity().getApplicationContext()).getAppComponent().inject(this);
 
         setupRecyclerView();
+        presenter.setView(this);
+        presenter.getPopularMovies();
         return view;
     }
 
@@ -41,8 +55,14 @@ public class MainFragment extends Fragment implements MoviePosterAdapter.MoviePo
     }
 
     @Override
-    public void onClick() {
+    public void onClick(TMDBMovieDetailsResponse movie) {
         Intent movieDetailIntent = new Intent(getContext(), MovieDetailActivity.class);
+        movieDetailIntent.putExtra(Intent.EXTRA_INTENT, Parcels.wrap(movie));
         startActivity(movieDetailIntent);
+    }
+
+    @Override
+    public void addMovie(TMDBMovieDetailsResponse movie) {
+        moviePosterAdapter.addItem(movie);
     }
 }

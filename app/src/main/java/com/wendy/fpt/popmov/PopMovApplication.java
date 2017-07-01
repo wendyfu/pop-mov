@@ -21,11 +21,14 @@ public class PopMovApplication extends Application {
                 .popMovAppModule(new PopMovAppModule(this))
                 .build();
         appComponent.inject(this);
-
     }
 
     public static PopMovApplication getCurrentApplication() {
         return currentApplication;
+    }
+
+    public PopMovApplicationComponent getAppComponent() {
+        return appComponent;
     }
 
 }

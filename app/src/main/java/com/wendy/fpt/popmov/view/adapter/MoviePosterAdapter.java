@@ -7,14 +7,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wendy.fpt.popmov.R;
+import com.wendy.fpt.popmov.data.model.TMDBMovieDetailsResponse;
 import com.wendy.fpt.popmov.view.viewholder.MoviePosterViewHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MoviePosterAdapter extends RecyclerView.Adapter<MoviePosterViewHolder> {
 
     private MoviePosterClickListener listener;
+    private List<TMDBMovieDetailsResponse> dataset;
 
     public MoviePosterAdapter(MoviePosterClickListener listener) {
         this.listener = listener;
+        this.dataset = new ArrayList<>();
     }
 
     @Override
@@ -27,17 +33,23 @@ public class MoviePosterAdapter extends RecyclerView.Adapter<MoviePosterViewHold
 
     @Override
     public void onBindViewHolder(MoviePosterViewHolder holder, int position) {
-        holder.bind("");
-        holder.setListener(listener);
+        TMDBMovieDetailsResponse movie = dataset.get(position);
+        holder.bindPoster(movie.getPoster());
+        holder.setListener(listener, movie);
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return dataset.size();
+    }
+
+    public void addItem(TMDBMovieDetailsResponse movie) {
+        dataset.add(movie);
+        notifyItemInserted(getItemCount() - 1);
     }
 
     public interface MoviePosterClickListener {
 
-        void onClick();
+        void onClick(TMDBMovieDetailsResponse movie);
     }
 }

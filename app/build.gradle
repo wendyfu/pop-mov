@@ -12,7 +12,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "TMDB_BASE_URL", "\"https://api.themoviedb.org/3\"")
+        buildConfigField("String", "TMDB_BASE_URL", "\"https://api.themoviedb.org/3/\"")
+        buildConfigField("String", "TMDB_API_KEY", "\"YOUR_KEY\"")
+        buildConfigField("String", "TMDB_POSTER_PREFIX", "\"http://image.tmdb.org/t/p/w185/\"");
     }
     buildTypes {
         release {
@@ -53,10 +55,14 @@ dependencies {
     //Rx
     compile 'io.reactivex:rxandroid:1.0.1'
 
-    //Glide Image Library
+    //Fresco Image Library
     compile 'com.github.bumptech.glide:glide:3.8.0'
 
     //ButterKnife View DI
     compile 'com.jakewharton:butterknife:8.6.0'
     apt 'com.jakewharton:butterknife-compiler:8.6.0'
+
+    //Parceler
+    compile 'org.parceler:parceler-api:1.1.9'
+    apt 'org.parceler:parceler:1.1.9'
 }

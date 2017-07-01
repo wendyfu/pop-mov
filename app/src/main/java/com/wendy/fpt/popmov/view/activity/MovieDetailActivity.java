@@ -1,4 +1,4 @@
-package com.wendy.fpt.popmov.view;
+package com.wendy.fpt.popmov.view.activity;
 
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;

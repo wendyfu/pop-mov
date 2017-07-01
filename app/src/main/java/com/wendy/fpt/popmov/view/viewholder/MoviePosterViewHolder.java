@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.wendy.fpt.popmov.BuildConfig;
 import com.wendy.fpt.popmov.R;
+import com.wendy.fpt.popmov.data.model.TMDBMovieDetailsResponse;
 import com.wendy.fpt.popmov.view.adapter.MoviePosterAdapter;
 
 import butterknife.BindView;
@@ -25,17 +27,17 @@ public class MoviePosterViewHolder extends RecyclerView.ViewHolder {
         this.context = context;
     }
 
-    public void bind(String imgUrl) {
-//        Glide.with(context).load(imgUrl).into(imgMovPoster);
-        Glide.with(context).load(R.drawable.sample_poster_1).into(imgMovPoster);
+    public void bindPoster(String imgUrl) {
+        Glide.with(context).load(BuildConfig.TMDB_POSTER_PREFIX + imgUrl).into(imgMovPoster);
     }
 
-    public void setListener(final MoviePosterAdapter.MoviePosterClickListener listener) {
+    public void setListener(final MoviePosterAdapter.MoviePosterClickListener listener,
+                            final TMDBMovieDetailsResponse movie) {
         imgMovPoster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listener == null) return;
-                listener.onClick();
+                listener.onClick(movie);
             }
         });
     }

@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.wendy.fpt.popmov.view.MainActivity">
+    tools:context="com.wendy.fpt.popmov.view.activity.MainActivity">
 
     <include layout="@layout/app_toolbar" />
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.wendy.fpt.popmov.view.MainFragment"
+        android:name="com.wendy.fpt.popmov.view.activity.MainFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/fragment_main" />

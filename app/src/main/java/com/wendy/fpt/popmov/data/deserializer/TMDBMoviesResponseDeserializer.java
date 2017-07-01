@@ -30,6 +30,9 @@ public class TMDBMoviesResponseDeserializer implements JsonDeserializer<TMDBMovi
             Type listType = new TypeToken<List<TMDBMoviesResponse.MovieResponse>>() { }.getType();
             tmdbMoviesResponse.setMovies(
                     (List<TMDBMoviesResponse.MovieResponse>) new Gson().fromJson(results, listType));
+            Log.d(TAG, tmdbMoviesResponse.toString());
+
+
             return tmdbMoviesResponse;
         } catch (JsonParseException e) {
             Log.i(TAG, e.getMessage());

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wendy.fpt.popmov.view.MainFragment">
+    tools:context="com.wendy.fpt.popmov.view.activity.MainFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_mov_poster"
