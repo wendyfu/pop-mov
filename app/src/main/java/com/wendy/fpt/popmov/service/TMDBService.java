@@ -1,6 +1,6 @@
 package com.wendy.fpt.popmov.service;
 
-public interface TheMovieDBService {
+public interface TMDBService {
 
     String TMDB_BASE_URL = "https://api.themoviedb.org/3";
     String MOVIES_POPULAR_ENDPOINT = "/movie/popular";
