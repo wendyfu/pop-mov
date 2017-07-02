@@ -27,8 +27,7 @@ public class MoviePosterAdapter extends RecyclerView.Adapter<MoviePosterViewHold
     public MoviePosterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         View view = LayoutInflater.from(context).inflate(R.layout.item_mov_poster, parent, false);
-        MoviePosterViewHolder viewHolder = new MoviePosterViewHolder(view, context);
-        return viewHolder;
+        return new MoviePosterViewHolder(view, context);
     }
 
     @Override
@@ -46,6 +45,11 @@ public class MoviePosterAdapter extends RecyclerView.Adapter<MoviePosterViewHold
     public void addItem(TMDBMovieDetailsResponse movie) {
         dataset.add(movie);
         notifyItemInserted(getItemCount() - 1);
+    }
+
+    public void clear() {
+        dataset.clear();
+        notifyDataSetChanged();
     }
 
     public interface MoviePosterClickListener {

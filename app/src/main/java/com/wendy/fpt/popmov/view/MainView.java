@@ -5,4 +5,10 @@ import com.wendy.fpt.popmov.data.model.TMDBMovieDetailsResponse;
 public interface MainView {
 
     void addMovie(TMDBMovieDetailsResponse tmdbMovieDetailsResponse);
+
+    void clearMovieList();
+
+    void setErrorVisibility(boolean isVisible);
+
+    void setProgressBarVisibility(boolean isVisible);
 }

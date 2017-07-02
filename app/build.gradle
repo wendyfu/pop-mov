@@ -13,7 +13,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "TMDB_BASE_URL", "\"https://api.themoviedb.org/3/\"")
-        buildConfigField("String", "TMDB_API_KEY", "\"YOUR_KEY\"")
+        buildConfigField("String", "TMDB_API_KEY", "\"YOUR_API_KEY\"")
         buildConfigField("String", "TMDB_POSTER_PREFIX", "\"http://image.tmdb.org/t/p/w185/\"");
     }
     buildTypes {

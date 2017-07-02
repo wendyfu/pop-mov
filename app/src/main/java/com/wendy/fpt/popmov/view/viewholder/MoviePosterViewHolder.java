@@ -28,7 +28,10 @@ public class MoviePosterViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindPoster(String imgUrl) {
-        Glide.with(context).load(BuildConfig.TMDB_POSTER_PREFIX + imgUrl).into(imgMovPoster);
+        Glide.with(context)
+                .load(BuildConfig.TMDB_POSTER_PREFIX + imgUrl)
+                .dontAnimate()
+                .into(imgMovPoster);
     }
 
     public void setListener(final MoviePosterAdapter.MoviePosterClickListener listener,

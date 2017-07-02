@@ -24,7 +24,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/sample_poster_1" />
+                android:src="@drawable/sample_poster_1"
+                android:contentDescription="@string/img_mov_poster"/>
         </LinearLayout>
 
         <LinearLayout
@@ -32,14 +33,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/dimen_16dp">
+            android:paddingLeft="@dimen/dimen_16dp"
+            android:paddingRight="@dimen/dimen_16dp">
 
             <TextView
                 android:id="@+id/movie_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/dimen_4dp"
-                android:text="Wonder Woman and the Philosopher's Stone"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/material_text_title"
                 android:textStyle="bold" />
@@ -49,7 +50,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/dimen_2dp"
-                android:text="2017"
                 android:textSize="@dimen/material_text_body1"
                 android:textStyle="bold" />
 
@@ -58,7 +58,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/dimen_2dp"
-                android:text="120 min"
                 android:textSize="@dimen/material_text_body1"
                 android:textStyle="italic" />
 
@@ -66,7 +65,6 @@
                 android:id="@+id/movie_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="11/10"
                 android:textSize="@dimen/material_text_caption"
                 android:textStyle="bold" />
 
@@ -76,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/dimen_8dp"
-                android:text="Mark as Favorite"
+                android:text="@string/button_mark_as_favorite"
                 android:textAllCaps="true" />
         </LinearLayout>
     </LinearLayout>
@@ -93,7 +91,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dimen_16dp"
-        android:text="An Amazon princess comes to the world of Man to become the greatest of the female superheroes."
         android:textAlignment="center"
         android:textSize="@dimen/material_text_subhead" />
 

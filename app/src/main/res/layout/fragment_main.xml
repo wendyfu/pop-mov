@@ -2,7 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wendy.fpt.popmov.view.activity.MainFragment">
+    tools:context="com.wendy.fpt.popmov.view.activity.MainFragment"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:padding="@dimen/dimen_16dp"
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/text_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_16dp"
+        android:text="@string/error_text"
+        android:textAlignment="center"
+        android:visibility="gone"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_mov_poster"

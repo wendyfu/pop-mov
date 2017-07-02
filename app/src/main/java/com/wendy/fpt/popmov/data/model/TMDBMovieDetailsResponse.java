@@ -9,7 +9,7 @@ public class TMDBMovieDetailsResponse {
 
     @SerializedName("poster_path")
     String poster;
-    @SerializedName("title")
+    @SerializedName("original_title")
     String title;
     @SerializedName("release_date")
     String releaseDate;

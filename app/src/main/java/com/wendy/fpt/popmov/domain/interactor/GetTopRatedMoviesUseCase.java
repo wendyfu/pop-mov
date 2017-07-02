@@ -15,14 +15,14 @@ import rx.Scheduler;
 import rx.functions.Func0;
 import rx.functions.Func1;
 
-public class GetPopularMoviesUseCase extends UseCase<Void, TMDBMovieDetailsResponse> {
+public class GetTopRatedMoviesUseCase extends UseCase<Void, TMDBMovieDetailsResponse> {
 
     private final String TAG = getClass().getSimpleName();
 
     private TMDBService tmdbService;
 
     @Inject
-    public GetPopularMoviesUseCase(
+    public GetTopRatedMoviesUseCase(
             @Named(PopMovAppModule.NAME_SCHEDULER_IO) Scheduler executionScheduler,
             @Named(PopMovAppModule.NAME_UI_THREAD) Scheduler postExecutionScheduler,
             TMDBService tmdbService) {
@@ -32,12 +32,11 @@ public class GetPopularMoviesUseCase extends UseCase<Void, TMDBMovieDetailsRespo
 
     @Override
     protected Observable<TMDBMovieDetailsResponse> buildUseCaseObservable(Void parameter) {
-        Log.d(TAG, "Retrieve popular movies");
+        Log.d(TAG, "Retrieve top rated movies");
         return Observable.defer(new Func0<Observable<TMDBMoviesResponse>>() {
             @Override
             public Observable<TMDBMoviesResponse> call() {
-                Log.d(TAG, "Call TMDBService");
-                return tmdbService.getPopularMovies();
+                return tmdbService.getTopRatedMovies();
             }
         }).flatMap(new Func1<TMDBMoviesResponse, Observable<TMDBMoviesResponse.MovieResponse>>() {
             @Override

@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Pop Movies</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="mov_detail_title">Movie Detail</string>
+    <string name="action_movie_popular">Sort by Popularity</string>
+    <string name="action_movie_top_rated">Sort by Top Rated</string>
+    <string name="error_text">An error occurred please try again</string>
+    <string name="button_mark_as_favorite">Mark as Favorite</string>
+    <string name="img_mov_poster">Movie Poster</string>
 </resources>
