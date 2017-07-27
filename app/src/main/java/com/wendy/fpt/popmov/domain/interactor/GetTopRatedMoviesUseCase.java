@@ -15,19 +15,16 @@ import rx.Scheduler;
 import rx.functions.Func0;
 import rx.functions.Func1;
 
-public class GetTopRatedMoviesUseCase extends UseCase<Void, TMDBMovieDetailsResponse> {
+public class GetTopRatedMoviesUseCase extends TMDBServiceUseCase<Void, TMDBMovieDetailsResponse> {
 
     private final String TAG = getClass().getSimpleName();
-
-    private TMDBService tmdbService;
 
     @Inject
     public GetTopRatedMoviesUseCase(
             @Named(PopMovAppModule.NAME_SCHEDULER_IO) Scheduler executionScheduler,
             @Named(PopMovAppModule.NAME_UI_THREAD) Scheduler postExecutionScheduler,
             TMDBService tmdbService) {
-        super(executionScheduler, postExecutionScheduler);
-        this.tmdbService = tmdbService;
+        super(executionScheduler, postExecutionScheduler, tmdbService);
     }
 
     @Override
