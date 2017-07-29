@@ -2,6 +2,7 @@ package com.wendy.fpt.popmov.service;
 
 import com.wendy.fpt.popmov.BuildConfig;
 import com.wendy.fpt.popmov.data.model.TMDBMovieDetailsResponse;
+import com.wendy.fpt.popmov.data.model.TMDBMovieReviewsResponse;
 import com.wendy.fpt.popmov.data.model.TMDBMovieVideosResponse;
 import com.wendy.fpt.popmov.data.model.TMDBMoviesResponse;
 
@@ -29,4 +30,7 @@ public interface TMDBService {
 
     @GET(MOVIE_VIDEOS + "?api_key=" + BuildConfig.TMDB_API_KEY)
     Observable<TMDBMovieVideosResponse> getMovieVideos(@Path(MOVIE_ID) int movieId);
+
+    @GET(MOVIE_REVIEWS + "?api_key=" + BuildConfig.TMDB_API_KEY)
+    Observable<TMDBMovieReviewsResponse> getMovieReviews(@Path(MOVIE_ID) int movieId);
 }

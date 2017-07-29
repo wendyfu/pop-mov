@@ -2,6 +2,7 @@ package com.wendy.fpt.popmov.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,28 +24,30 @@ import com.wendy.fpt.popmov.view.adapter.MoviePosterAdapter;
 
 import org.parceler.Parcels;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainFragment extends Fragment implements MainView, MoviePosterAdapter.MoviePosterClickListener {
+public class MainFragment extends Fragment
+    implements MainView, MoviePosterAdapter.MoviePosterClickListener {
 
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
-    @BindView(R.id.text_error)
-    TextView textError;
-    @BindView(R.id.rv_mov_poster)
-    RecyclerView rvMovPoster;
+    private static final String CURRENT_LIST_STATE = "current_list_state";
+    private static final String CURRENT_SELECTED_SORT = "current_selected_sort";
 
-    @Inject
-    MainPresenter presenter;
+    @BindView(R.id.progress_bar) ProgressBar progressBar;
+    @BindView(R.id.text_error) TextView textError;
+    @BindView(R.id.rv_mov_poster) RecyclerView rvMovPoster;
 
+    @Inject MainPresenter presenter;
+
+    private int currentSelectedSort = R.id.action_movie_popular;
     private MoviePosterAdapter moviePosterAdapter;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         setHasOptionsMenu(true);
         ButterKnife.bind(this, view);
@@ -53,23 +56,51 @@ public class MainFragment extends Fragment implements MainView, MoviePosterAdapt
         setupRecyclerView();
         presenter.setView(this);
 
-        presenter.getPopularMovies();
+        if (savedInstanceState != null) {
+            List<TMDBMovieDetailsResponse> currentList =
+                Parcels.unwrap(savedInstanceState.getParcelable(CURRENT_LIST_STATE));
+            moviePosterAdapter.setDataset(currentList);
+            currentSelectedSort = savedInstanceState.getInt(CURRENT_SELECTED_SORT);
+        }
+
+        switch (currentSelectedSort) {
+            case R.id.action_movie_popular:
+                presenter.getPopularMovies();
+                break;
+            case R.id.action_movie_top_rated:
+                presenter.getTopRatedMovies();
+                break;
+            case R.id.action_movie_favorites:
+                presenter.getFavoriteMovies();
+                break;
+        }
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    @Override public void onResume() {
+        super.onResume();
+        if (currentSelectedSort == R.id.action_movie_favorites) {
+            moviePosterAdapter.clear();
+            presenter.getFavoriteMovies();
+        }
+    }
+
+    @Override public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_main_fragment, menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        clearMovieList();
+        currentSelectedSort = item.getItemId();
         switch (item.getItemId()) {
             case R.id.action_movie_popular:
                 presenter.getPopularMovies();
                 return true;
             case R.id.action_movie_top_rated:
                 presenter.getTopRatedMovies();
+                return true;
+            case R.id.action_movie_favorites:
+                presenter.getFavoriteMovies();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -84,30 +115,32 @@ public class MainFragment extends Fragment implements MainView, MoviePosterAdapt
         rvMovPoster.setLayoutManager(gridLayoutManager);
     }
 
-    @Override
-    public void onClick(TMDBMovieDetailsResponse movie) {
+    @Override public void onClick(TMDBMovieDetailsResponse movie) {
         Intent movieDetailIntent = new Intent(getContext(), MovieDetailActivity.class);
         movieDetailIntent.putExtra(Intent.EXTRA_INTENT, Parcels.wrap(movie));
         startActivity(movieDetailIntent);
     }
 
-    @Override
-    public void addMovie(TMDBMovieDetailsResponse movie) {
+    @Override public void addMovie(TMDBMovieDetailsResponse movie) {
         moviePosterAdapter.addItem(movie);
     }
 
-    @Override
     public void clearMovieList() {
         moviePosterAdapter.clear();
     }
 
-    @Override
-    public void setErrorVisibility(boolean isVisible) {
+    @Override public void setErrorVisibility(boolean isVisible) {
         textError.setVisibility(isVisible ? View.VISIBLE : View.GONE);
     }
 
-    @Override
-    public void setProgressBarVisibility(boolean isVisible) {
+    @Override public void setProgressBarVisibility(boolean isVisible) {
         progressBar.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+    }
+
+    @Override public void onSaveInstanceState(Bundle outState) {
+        Parcelable currentList = Parcels.wrap(moviePosterAdapter.getDataset());
+        outState.putParcelable(CURRENT_LIST_STATE, currentList);
+        outState.putInt(CURRENT_SELECTED_SORT, currentSelectedSort);
+        super.onSaveInstanceState(outState);
     }
 }

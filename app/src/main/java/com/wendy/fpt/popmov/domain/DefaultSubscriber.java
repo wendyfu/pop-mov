@@ -1,4 +1,4 @@
-package com.wendy.fpt.popmov.domain.interactor;
+package com.wendy.fpt.popmov.domain;
 
 import android.util.Log;
 

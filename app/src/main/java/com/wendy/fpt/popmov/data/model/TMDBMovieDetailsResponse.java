@@ -4,21 +4,23 @@ import com.google.gson.annotations.SerializedName;
 
 import org.parceler.Parcel;
 
-@Parcel
-public class TMDBMovieDetailsResponse {
+@Parcel public class TMDBMovieDetailsResponse {
 
-    @SerializedName("poster_path")
-    String poster;
-    @SerializedName("original_title")
-    String title;
-    @SerializedName("release_date")
-    String releaseDate;
-    @SerializedName("runtime")
-    int duration;
-    @SerializedName("vote_average")
-    float rating;
-    @SerializedName("overview")
-    String overview;
+    @SerializedName("id") int id;
+    @SerializedName("poster_path") String poster;
+    @SerializedName("original_title") String title;
+    @SerializedName("release_date") String releaseDate;
+    @SerializedName("runtime") int duration;
+    @SerializedName("vote_average") float rating;
+    @SerializedName("overview") String overview;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getPoster() {
         return poster;
@@ -66,5 +68,10 @@ public class TMDBMovieDetailsResponse {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    @Override public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof TMDBMovieDetailsResponse)) return false;
+        return getId() == ((TMDBMovieDetailsResponse) obj).getId();
     }
 }

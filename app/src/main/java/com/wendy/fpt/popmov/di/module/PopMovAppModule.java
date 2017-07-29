@@ -1,13 +1,18 @@
 package com.wendy.fpt.popmov.di.module;
 
+import android.content.ContentResolver;
 import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.wendy.fpt.popmov.BuildConfig;
 import com.wendy.fpt.popmov.PopMovApplication;
+import com.wendy.fpt.popmov.data.deserializer.TMDBMovieReviewsResponseDeserializer;
+import com.wendy.fpt.popmov.data.deserializer.TMDBMovieVideosResponseDeserializer;
 import com.wendy.fpt.popmov.data.deserializer.TMDBMoviesResponseDeserializer;
 import com.wendy.fpt.popmov.data.exception.RxExceptionCallAdapterFactory;
+import com.wendy.fpt.popmov.data.model.TMDBMovieReviewsResponse;
+import com.wendy.fpt.popmov.data.model.TMDBMovieVideosResponse;
 import com.wendy.fpt.popmov.data.model.TMDBMoviesResponse;
 import com.wendy.fpt.popmov.service.TMDBService;
 
@@ -16,7 +21,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Scheduler;
@@ -38,9 +42,15 @@ import rx.schedulers.Schedulers;
         return appContext;
     }
 
+    @Provides public ContentResolver provideContentResolver() {
+        return PopMovApplication.getCurrentApplication().getContentResolver();
+    }
+
     @Provides @Singleton public TMDBService provideTMDBService() {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(TMDBMoviesResponse.class, new TMDBMoviesResponseDeserializer())
+                .registerTypeAdapter(TMDBMovieVideosResponse.class, new TMDBMovieVideosResponseDeserializer())
+                .registerTypeAdapter(TMDBMovieReviewsResponse.class, new TMDBMovieReviewsResponseDeserializer())
                 .create();
 
         Retrofit retrofit =

@@ -6,8 +6,6 @@ public interface MainView {
 
     void addMovie(TMDBMovieDetailsResponse tmdbMovieDetailsResponse);
 
-    void clearMovieList();
-
     void setErrorVisibility(boolean isVisible);
 
     void setProgressBarVisibility(boolean isVisible);

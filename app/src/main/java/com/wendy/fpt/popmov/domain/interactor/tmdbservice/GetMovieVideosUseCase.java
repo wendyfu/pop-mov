@@ -1,4 +1,4 @@
-package com.wendy.fpt.popmov.domain.interactor;
+package com.wendy.fpt.popmov.domain.interactor.tmdbservice;
 
 import android.util.Log;
 
@@ -6,6 +6,7 @@ import com.wendy.fpt.popmov.data.model.TMDBMovieVideosResponse;
 import com.wendy.fpt.popmov.di.module.PopMovAppModule;
 import com.wendy.fpt.popmov.service.TMDBService;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import rx.Observable;
@@ -18,7 +19,7 @@ public class GetMovieVideosUseCase extends TMDBServiceUseCase<Integer,
 
     private final String TAG = getClass().getSimpleName();
 
-    public GetMovieVideosUseCase(
+    @Inject public GetMovieVideosUseCase(
             @Named(PopMovAppModule.NAME_SCHEDULER_IO) Scheduler executionScheduler,
             @Named(PopMovAppModule.NAME_UI_THREAD) Scheduler postExecutionScheduler,
             TMDBService tmdbService) {

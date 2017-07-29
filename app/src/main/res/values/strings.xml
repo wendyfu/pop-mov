@@ -5,5 +5,10 @@
     <string name="action_movie_top_rated">Sort by Top Rated</string>
     <string name="error_text">An error occurred please try again</string>
     <string name="button_mark_as_favorite">Mark as Favorite</string>
+    <string name="button_unfavorite">Unfavorite</string>
     <string name="img_mov_poster">Movie Poster</string>
+    <string name="default_video_type">Trailer</string>
+    <string name="review_author">Author</string>
+    <string name="review_content">Content</string>
+    <string name="action_movie_favorites">Favorites Movies</string>
 </resources>

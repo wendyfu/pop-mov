@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingBottom="@dimen/dimen_16dp"
     tools:context="com.wendy.fpt.popmov.view.activity.MovieDetailFragment">
 
     <LinearLayout
@@ -24,8 +25,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
-                android:src="@drawable/sample_poster_1"
-                android:contentDescription="@string/img_mov_poster"/>
+                android:contentDescription="@string/img_mov_poster"
+                android:src="@drawable/sample_poster_1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -43,7 +44,7 @@
                 android:paddingBottom="@dimen/dimen_4dp"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/material_text_title"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/movie_year"
@@ -51,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/dimen_2dp"
                 android:textSize="@dimen/material_text_body1"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/movie_duration"
@@ -59,23 +60,24 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/dimen_2dp"
                 android:textSize="@dimen/material_text_body1"
-                android:textStyle="italic" />
+                android:textStyle="italic"/>
 
             <TextView
                 android:id="@+id/movie_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/material_text_caption"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <Button
+                android:id="@+id/button_favorite"
                 style="@style/Base.Widget.AppCompat.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/dimen_8dp"
                 android:text="@string/button_mark_as_favorite"
-                android:textAllCaps="true" />
+                android:textAllCaps="true"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -84,7 +86,7 @@
         android:layout_height="@dimen/line_height"
         android:layout_marginLeft="@dimen/dimen_16dp"
         android:layout_marginRight="@dimen/dimen_16dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@android:color/darker_gray"/>
 
     <TextView
         android:id="@+id/movie_overview"
@@ -92,6 +94,41 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/dimen_16dp"
         android:textAlignment="center"
-        android:textSize="@dimen/material_text_subhead" />
+        android:textSize="@dimen/material_text_subhead"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:layout_marginLeft="@dimen/dimen_16dp"
+        android:layout_marginRight="@dimen/dimen_16dp"
+        android:background="@android:color/darker_gray"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_16dp"
+        android:visibility="gone"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_mov_videos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        tools:listitem="@layout/item_mov_videos"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:layout_marginLeft="@dimen/dimen_16dp"
+        android:layout_marginRight="@dimen/dimen_16dp"
+        android:background="@android:color/darker_gray"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_mov_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false"
+        tools:listitem="@layout/item_mov_reviews"/>
 
 </LinearLayout>

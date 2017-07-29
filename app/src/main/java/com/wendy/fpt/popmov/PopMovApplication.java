@@ -2,6 +2,7 @@ package com.wendy.fpt.popmov;
 
 import android.app.Application;
 
+import com.facebook.stetho.Stetho;
 import com.wendy.fpt.popmov.di.DaggerPopMovApplicationComponent;
 import com.wendy.fpt.popmov.di.PopMovApplicationComponent;
 import com.wendy.fpt.popmov.di.module.PopMovAppModule;
@@ -21,6 +22,8 @@ public class PopMovApplication extends Application {
                 .popMovAppModule(new PopMovAppModule(this))
                 .build();
         appComponent.inject(this);
+
+        Stetho.initializeWithDefaults(this);
     }
 
     public static PopMovApplication getCurrentApplication() {

@@ -14,7 +14,8 @@ import com.wendy.fpt.popmov.data.model.TMDBMovieVideosResponse;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class TMDBMovieVideosDeserializer implements JsonDeserializer<TMDBMovieVideosResponse> {
+public class TMDBMovieVideosResponseDeserializer implements
+        JsonDeserializer<TMDBMovieVideosResponse> {
 
     private final String TAG = getClass().getSimpleName();
 

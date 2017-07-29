@@ -43,12 +43,22 @@ public class MoviePosterAdapter extends RecyclerView.Adapter<MoviePosterViewHold
     }
 
     public void addItem(TMDBMovieDetailsResponse movie) {
+        if (dataset.contains(movie)) return;
         dataset.add(movie);
         notifyItemInserted(getItemCount() - 1);
     }
 
     public void clear() {
         dataset.clear();
+        notifyDataSetChanged();
+    }
+
+    public List<TMDBMovieDetailsResponse> getDataset() {
+        return dataset;
+    }
+
+    public void setDataset(List<TMDBMovieDetailsResponse> currentList) {
+        dataset.addAll(currentList);
         notifyDataSetChanged();
     }
 

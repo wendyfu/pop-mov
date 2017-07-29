@@ -1,4 +1,4 @@
-package com.wendy.fpt.popmov.domain.interactor;
+package com.wendy.fpt.popmov.domain.interactor.tmdbservice;
 
 import android.util.Log;
 
@@ -15,12 +15,12 @@ import rx.Scheduler;
 import rx.functions.Func0;
 import rx.functions.Func1;
 
-public class GetTopRatedMoviesUseCase extends TMDBServiceUseCase<Void, TMDBMovieDetailsResponse> {
+public class GetPopularMoviesUseCase extends TMDBServiceUseCase<Void, TMDBMovieDetailsResponse> {
 
     private final String TAG = getClass().getSimpleName();
 
     @Inject
-    public GetTopRatedMoviesUseCase(
+    public GetPopularMoviesUseCase(
             @Named(PopMovAppModule.NAME_SCHEDULER_IO) Scheduler executionScheduler,
             @Named(PopMovAppModule.NAME_UI_THREAD) Scheduler postExecutionScheduler,
             TMDBService tmdbService) {
@@ -29,11 +29,12 @@ public class GetTopRatedMoviesUseCase extends TMDBServiceUseCase<Void, TMDBMovie
 
     @Override
     protected Observable<TMDBMovieDetailsResponse> buildUseCaseObservable(Void parameter) {
-        Log.d(TAG, "Retrieve top rated movies");
+        Log.d(TAG, "Retrieve popular movies");
         return Observable.defer(new Func0<Observable<TMDBMoviesResponse>>() {
             @Override
             public Observable<TMDBMoviesResponse> call() {
-                return tmdbService.getTopRatedMovies();
+                Log.d(TAG, "Call TMDBService");
+                return tmdbService.getPopularMovies();
             }
         }).flatMap(new Func1<TMDBMoviesResponse, Observable<TMDBMoviesResponse.MovieResponse>>() {
             @Override

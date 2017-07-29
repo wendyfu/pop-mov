@@ -15,7 +15,7 @@ public class TMDBMovieReviewsResponse {
     @SerializedName("total_results")
     private int totalResults;
 
-    List<MovieReview> revies;
+    List<MovieReview> reviews;
 
     public int getId() {
         return id;
@@ -49,12 +49,12 @@ public class TMDBMovieReviewsResponse {
         this.totalResults = totalResults;
     }
 
-    public List<MovieReview> getRevies() {
-        return revies;
+    public List<MovieReview> getReviews() {
+        return reviews;
     }
 
-    public void setRevies(List<MovieReview> revies) {
-        this.revies = revies;
+    public void setReviews(List<MovieReview> reviews) {
+        this.reviews = reviews;
     }
 
     public class MovieReview {
