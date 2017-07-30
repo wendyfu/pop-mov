@@ -11,4 +11,6 @@
     <string name="review_author">Author</string>
     <string name="review_content">Content</string>
     <string name="action_movie_favorites">Favorites Movies</string>
+    <string name="toast_favorite">Movie is added to favorites list</string>
+    <string name="toast_unfavorite">Movie is removed from favorites list</string>
 </resources>

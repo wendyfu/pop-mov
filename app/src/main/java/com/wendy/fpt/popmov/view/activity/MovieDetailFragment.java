@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.wendy.fpt.popmov.BuildConfig;
@@ -133,6 +134,11 @@ public class MovieDetailFragment extends Fragment
         buttonFavorite.setText(isFavorited ? getString(R.string.button_unfavorite)
             : getString(R.string.button_mark_as_favorite));
         this.isFavorited = isFavorited;
+    }
+
+    @Override public void showToastActionFavorite(boolean isFavorite) {
+        String toastText = isFavorite ? getString(R.string.toast_favorite) : getString(R.string.toast_unfavorite);
+        Toast.makeText(getContext(), toastText, Toast.LENGTH_SHORT).show();
     }
 
     @Override public void onClick(TMDBMovieVideosResponse.MovieVideo video) {

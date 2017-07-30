@@ -58,8 +58,7 @@ public class MoviePosterAdapter extends RecyclerView.Adapter<MoviePosterViewHold
     }
 
     public void setDataset(List<TMDBMovieDetailsResponse> currentList) {
-        dataset.addAll(currentList);
-        notifyDataSetChanged();
+        dataset = currentList;
     }
 
     public interface MoviePosterClickListener {

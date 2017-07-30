@@ -78,6 +78,7 @@ public class MovieDetailPresenter extends AbstractPresenter<MovieDetailView> {
                 super.onNext(uri);
                 if (uri != null) {
                     view.enableMarkAsFavorite(true);
+                    view.showToastActionFavorite(true);
                 }
             }
         }, movieDetail);
@@ -88,6 +89,7 @@ public class MovieDetailPresenter extends AbstractPresenter<MovieDetailView> {
             @Override public void onNext(Boolean isSuccess) {
                 super.onNext(isSuccess);
                 view.enableMarkAsFavorite(false);
+                view.showToastActionFavorite(false);
             }
         }, movieId);
     }

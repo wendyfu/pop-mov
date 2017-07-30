@@ -12,4 +12,6 @@ public interface MovieDetailView {
     void setProgressBarVisibility(boolean isVisible);
 
     void enableMarkAsFavorite(boolean isFavorite);
+
+    void showToastActionFavorite(boolean isFavorite);
 }
